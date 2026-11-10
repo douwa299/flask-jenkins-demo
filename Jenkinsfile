@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -10,24 +11,24 @@ pipeline {
 
         stage('Setup') {
             steps {
-                bat 'python -m venv venv'
-                bat 'venv\\Scripts\\pip install -r requirements.txt'
+                bat '"C:\\Users\\tech\\AppData\\Local\\Programs\\Python\\Python313\\python.exe" -m venv venv'
+                bat 'venv\\Scripts\\python -m pip install -r requirements.txt'
             }
         }
 
         stage('Test') {
             steps {
-                bat 'venv\\Scripts\\pytest'
+                bat 'venv\\Scripts\\python -m pytest -v'
             }
         }
     }
 
     post {
         success {
-            echo 'All tests passed! ✅'
+            echo 'All tests passed!'
         }
         failure {
-            echo 'Tests failed! ❌'
+            echo 'Tests failed!'
         }
     }
 }
